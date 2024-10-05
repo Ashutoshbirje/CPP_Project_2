@@ -1,0 +1,4 @@
+     Cust.ID          Name          age  phone No.          email                    address      
+     #f012         ASHUTOSH         45 8454484549             SKJDK@JKD.COM                       DKD
+      #f012              dsd          5       5656                        ds                        ds
+      #f013              sak          5       5484                       asa                       sas
