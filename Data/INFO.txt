@@ -1,2 +1,2 @@
-     Cust.ID            Name        age   phone No.          email                             address      
-
+     Cust.ID            Name        age   phone No.          email                             address                                                     
+      #f013         ASHUTOSH         20 9322323588   ashutoshbirje@gmail.com          at.postvijaydurg

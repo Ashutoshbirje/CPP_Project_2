@@ -15,16 +15,37 @@ The **Hotel Management System** is a software application designed to manage hot
 - **Settings**: Allows changes in software settings but requires a password for modifications.
 
 ## Screenshots
-*(Add screenshots of the user interface here)*
+
+### Home Page View
+![Menu Card](./Images/Home.png)
+
+### About
+![Menu Card](./Images/Info1.png)
+![Menu Card](./Images/Info2.png)
+
+### Customer View
+![Menu Card](./Images/Customer.png)
 
 ### Menu Card View
-![Menu Card](path/to/menu_card_screenshot.png)
+![Menu Card](./Images/Menucard.png)
+
+### Order
+![Menu Card](./Images/Order.png)
+
+### Bill
+![Menu Card](./Images/Bill.png)
+
+### Customer Data
+![Menu Card](./Images/Data1.png)
+
+### Menu Data
+![Menu Card](./Images/Data2.png)
 
 ### Room Booking View
-![Room Booking](path/to/room_booking_screenshot.png)
+![Room Booking](./Images/Room.png)
 
 ### Settings Page
-![Settings](path/to/settings_screenshot.png)
+![Settings](./Images/Setting.png)
 
 ## Installation
 ```sh
@@ -35,6 +56,6 @@ git clone <repository_url>
 cd hotel-management-system
 
 # Run the application
-g++ main.cpp
-g++ .\main.cpp
+g++ main.cpp -o main.exe
+.\main.exe
 
