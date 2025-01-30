@@ -1,0 +1,2 @@
+     Cust.ID            Name        age   phone No.          email                             address      
+

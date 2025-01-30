@@ -1,4 +1,0 @@
-     Cust.ID       Item       quantity      cost       
-
-      #f012      Vadapav         2           40
-      #f013      Tea             6           60

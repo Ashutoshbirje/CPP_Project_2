@@ -76,7 +76,7 @@ public:
     cout << "                         Item              Qty.  cost(Rs.)                    " << endl;
     cout << "                        ----------------------------------                    " << endl;
     ofstream write;
-    write.open("BILL.txt", ios_base::app);
+    write.open("Data/BILL.txt", ios_base::app);
     for (int i = 0; i < count; i++) {
     cout << "                         " << Item[i] << "        " << quantity[i] << "     "<< cost[i] << endl;
       write <<setw(10)<< "#f01"<<Cust_id<<"      "<<setw(11)<<Item[i] << "    "<<setw(2) << quantity[i] << "        "
@@ -88,9 +88,6 @@ public:
     cout << "                        ----------------------------------                    " << endl;
     cout << "                         THANK YOU FOR VISITING........!                       " << endl;
     cout << "==============================================================================" << endl;
-    // Item.clear();
-    // cost.clear();
-    // quantity.clear();
     cout << endl;
   }
   void inti(void) {

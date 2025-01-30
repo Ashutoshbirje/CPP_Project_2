@@ -1,6 +1,4 @@
-#include <fstream>
-#include <iomanip>
-#include <iostream>
+#include <bits/stdc++.h>
 #include "Menu.cpp"
 #include "password.cpp"
 using namespace std;
@@ -19,7 +17,7 @@ public:
   int ID=0;
   void set(){
     ofstream w;
-    w.open("INFO.txt", ios_base::app);
+    w.open("Data/INFO.txt", ios_base::app);
     cout << "Enter your name        : ";
     cin >> name;
 
@@ -37,7 +35,7 @@ public:
 
     int cnt = 0;
     string s;
-    ifstream r("INFO.txt", ios_base::in);
+    ifstream r("Data/INFO.txt", ios_base::in);
     while (getline(r, s)) {
       cnt++;
     }
@@ -62,13 +60,14 @@ public:
     if (reqrooms <= (trooms - brooms)) {
       int days;
       char choose;
-    cout << "                 Enter For how many days do you want room? ";
-      cin >> days;
+    cout << "                 Enter For how many days do you want room ? ";
+    cin >> days;
     cout << "------------------------------------------------------------------------------" << endl;
     cout << "                 Your total bill is :" << reqrooms * days * 1000 << endl;
     cout << "------------------------------------------------------------------------------" << endl;
-      cout << "               Do you Want to confirm booking?(Y/N) " << endl;
-      cin >> choose;
+    cout << "                 Do you Want to confirm booking?(Y/N)                         " << endl;
+    cout << "------------------------------------------------------------------------------" << endl;
+    cin >> choose;
     cout << "------------------------------------------------------------------------------" << endl;
       if (choose == 'Y') {
     cout << "                 Congratulations your rooms booking is confirmed              " << endl;
@@ -76,12 +75,12 @@ public:
       brooms += reqrooms;
       } 
       else {
-    cout << "                 Booking is not confirmed" << endl;
+    cout << "                 Booking is not confirmed                                     " << endl;
     cout << "------------------------------------------------------------------------------" << endl;
       }
     }
     else {
-    cout << "                 Required Number of Rooms are not available" << endl;
+    cout << "                 Required Number of Rooms are not available                   " << endl;
     cout << "------------------------------------------------------------------------------" << endl;
     }
   }
@@ -103,30 +102,6 @@ public:
     cout << "==============================================================================" << endl;
     cin >> a;
     open();
-  }
-  void About(){
-    ifstream inputFile("About.txt");
-    string line;
-    while (getline(inputFile, line)) {
-      cout << line << endl;
-    }
-    inputFile.close();
-    char a;
-    cout << "Press any Key : ";
-    cin >> a;
-    show();
-  }
-  void Help() {
-    ifstream inputFile("Help.txt");
-    string line;
-    while (getline(inputFile, line)) {
-      cout << line << endl;
-    }
-    inputFile.close();
-    char a;
-    cout << "Press any Key : ";
-    cin >> a;
-    show();
   }
   void open() {
     switch (a) {
@@ -157,6 +132,30 @@ public:
       show();
       break;
     }
+  }
+  void About(){
+    ifstream inputFile("Data/About.txt");
+    string line;
+    while (getline(inputFile, line)) {
+      cout << line << endl;
+    }
+    inputFile.close();
+    char a;
+    cout << "Press any Key : ";
+    cin >> a;
+    show();
+  }
+  void Help() {
+    ifstream inputFile("Data/Help.txt");
+    string line;
+    while (getline(inputFile, line)) {
+      cout << line << endl;
+    }
+    inputFile.close();
+    char a;
+    cout << "Press any Key : ";
+    cin >> a;
+    show();
   }
   void create(){
        menu s;
