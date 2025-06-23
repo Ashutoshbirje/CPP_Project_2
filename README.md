@@ -41,9 +41,6 @@ The **Hotel Management System** is a software application designed to manage hot
 ### Menu Data
 ![Menu Card](./Images/Data2.png)
 
-### Room Booking View
-![Room Booking](./Images/Room.png)
-
 ### Settings Page
 ![Settings](./Images/Setting.png)
 

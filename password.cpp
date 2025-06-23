@@ -4,8 +4,6 @@ using namespace std;
 class password {
   int a = 0;
 public:
-  // void reset(void) { Pass_W(); }
-
 
   void Set_Pass_W(void) {
     int b;
@@ -75,10 +73,9 @@ public:
 void login()
 {
     cout << "==============================================================================" << endl;
-    cout << "                                This is login page                            " << endl;
+    cout << "                                    Login page                                " << endl;
     cout << "                              Press 1) Change password                        " << endl;
-    cout << "                              Press 2) Manage employee                        " << endl;
-    cout << "                              Press 3) BACK TO HOME                           " << endl;
+    cout << "                              Press 2) BACK TO HOME                           " << endl;
     cout << "==============================================================================" << endl;
 
   int x;
@@ -89,12 +86,6 @@ void login()
       login();
       break;
     case 2:
-      cout<<"This is manage employee page"<<endl;
-      // CALL TO EMPLOYEE
-      login();
-      break;
-
-    case 3:
       break;
     default:
       cout << "------------------------------------------------------------------------------" << endl;

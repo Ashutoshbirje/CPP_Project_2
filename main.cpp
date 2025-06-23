@@ -1,97 +1,93 @@
 #include <bits/stdc++.h>
 #include "Menu.cpp"
 #include "password.cpp"
+#include <regex>
 using namespace std;
-class Customer{
+class Customer
+{
 private:
-  string name;
+  string name, phone, email, address;
   int age;
-  long long int phone;
-  string email;
-  string address;
-  int trooms = 10;
-  int brooms = 0;
-  
+
 public:
- 
-  int ID=0;
-  void set(){
-    ofstream w;
-    w.open("Data/INFO.txt", ios_base::app);
-    cout << "Enter your name        : ";
-    cin >> name;
-
-    cout << "Enter your age         : ";
-    cin >> age;
-
-    cout << "Enter your phone number: ";
-    cin >> phone;
-
-    cout << "Enter your email       : ";
-    cin >> email;
-
-    cout << "Enter your address     : ";
-    cin >> address;
-
-    int cnt = 0;
-    string s;
-    ifstream r("Data/INFO.txt", ios_base::in);
-    while (getline(r, s)) {
-      cnt++;
-    }
-    r.close();
-    ID = cnt;
-    w << setw(10) << "#f01" << cnt << "  " << setw(15) << name << " "
-      << setw(10) << age << " " << setw(10) << phone << " " << setw(25) << email
-      << " " << setw(25) << address << endl;
-  }
-  void available_rooms() { 
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "                 Total number of rooms avialable : "<<trooms - brooms << endl; 
-    cout << "------------------------------------------------------------------------------" << endl;
-    booking_rooms();
-  }
-  void booking_rooms() {
-    int reqrooms;
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "                 Enter number of rooms you want : " ;
-    cin >> reqrooms;
-    cout << "------------------------------------------------------------------------------" << endl;
-    if (reqrooms <= (trooms - brooms)) {
-      int days;
-      char choose;
-    cout << "                 Enter For how many days do you want room ? ";
-    cin >> days;
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "                 Your total bill is :" << reqrooms * days * 1000 << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "                 Do you Want to confirm booking?(Y/N)                         " << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
-    cin >> choose;
-    cout << "------------------------------------------------------------------------------" << endl;
-      if (choose == 'Y') {
-    cout << "                 Congratulations your rooms booking is confirmed              " << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
-      brooms += reqrooms;
-      } 
-      else {
-    cout << "                 Booking is not confirmed                                     " << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
+  int ID = 0;
+  void set()
+  {
+    try
+    {
+      cin.ignore();
+      cout << "Enter your name        : ";
+      getline(cin, name);
+      if (!regex_match(name, regex("^[A-Za-z ]+$")))
+      {
+        throw runtime_error("Invalid Name: Only alphabets value allowed.");
       }
+
+      string ageStr;
+      cout << "Enter your age         : ";
+      getline(cin, ageStr);
+      if (!regex_match(ageStr, regex("^\\d{1,3}$")))
+      {
+        throw runtime_error("Invalid Age: Only digits allowed (1-3 digits).");
+      }
+      age = stoi(ageStr); // convert to int
+
+      cout << "Enter your phone number: ";
+      cin >> phone;
+      if (!regex_match(phone, regex("^\\d{10}$")))
+      {
+        throw runtime_error("Invalid Phone: Must be exactly 10 digits.");
+      }
+
+      cout << "Enter your email       : ";
+      cin >> email;
+      if (!regex_match(email, regex("^[\\w.-]+@[\\w.-]+\\.\\w+$")))
+      {
+        throw runtime_error("Invalid Email: Format is incorrect.");
+      }
+
+      cout << "Enter your address     : ";
+      cin.ignore();
+      getline(cin, address);
+
+      // Count existing records
+      int cnt = 1;
+      string s;
+      ifstream r("Data/INFO.txt", ios_base::in);
+      while (getline(r, s))
+      {
+        cnt++;
+      }
+      r.close();
+      ID = cnt;
+
+      ofstream w("Data/INFO.txt", ios_base::app);
+      w << setw(10) << "#f01" << cnt << "  " << setw(15) << name << " "
+        << setw(10) << age << " " << setw(10) << phone << " "
+        << setw(25) << email << " " << setw(25) << address << endl;
     }
-    else {
-    cout << "                 Required Number of Rooms are not available                   " << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
+    catch (const exception &e)
+    {
+      cout << endl;
+      cout << "------------------------------------------------------------------------------" << endl;
+      cerr << "                   " << e.what() << endl;
+      cout << "------------------------------------------------------------------------------" << endl;
+      cout << "                           :: PLEASE TRY AGAIN ::                             " << endl;
+      cout << "------------------------------------------------------------------------------" << endl;
+      set();
     }
   }
 };
 
-class PAGE:public Customer{
- char a;
- password p;
- int flag=1;
+class PAGE : public Customer
+{
+  char choice;
+  password p;
+  int flag = 1;
+
 public:
-  void show() {
+  void show()
+  {
     cout << "==============================================================================" << endl;
     cout << "                               Welcome to Hotel Taj                           " << endl;
     cout << "                                  A) About                                    " << endl;
@@ -100,11 +96,14 @@ public:
     cout << "                                  D) Setting                                  " << endl;
     cout << "                            (Enter character to move on)                      " << endl;
     cout << "==============================================================================" << endl;
-    cin >> a;
+    cin >> choice;
     open();
   }
-  void open() {
-    switch (a) {
+ 
+  void open()
+  {
+    switch (choice)
+    {
     case 'A':
       About();
       break;
@@ -116,12 +115,14 @@ public:
       Help();
       break;
     case 'D':
-      if(flag==1){
-       p.Set_Pass_W();
-       flag=0;
+      if (flag == 1)
+      {
+        p.Set_Pass_W();
+        flag = 0;
       }
-      else{
-       p.Pass_W();
+      else
+      {
+        p.Pass_W();
       }
       show();
       break;
@@ -133,68 +134,75 @@ public:
       break;
     }
   }
-  void About(){
+
+  void About()
+  {
     ifstream inputFile("Data/About.txt");
     string line;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
       cout << line << endl;
     }
     inputFile.close();
-    char a;
+    char ch;
     cout << "Press any Key : ";
-    cin >> a;
+    cin >> ch;
     show();
   }
-  void Help() {
+
+  void Help()
+  {
     ifstream inputFile("Data/Help.txt");
     string line;
-    while (getline(inputFile, line)) {
+    while (getline(inputFile, line))
+    {
       cout << line << endl;
     }
     inputFile.close();
-    char a;
+    char ch;
     cout << "Press any Key : ";
-    cin >> a;
+    cin >> ch;
     show();
   }
-  void create(){
-       menu s;
-       s.Card(ID);
+
+  void create()
+  {
+    menu s;
+    s.Card(ID);
   }
-  void info() {
+
+  void info()
+  {
     cout << "==============================================================================" << endl;
     cout << "                    Choose correct option for What do Want?                   " << endl;
     cout << "                              Press 1) Menu Card                              " << endl;
-    cout << "                              Press 2) Booking                                " << endl;
-    cout << "                              Press 3) BACK TO HOME                           " << endl;
+    cout << "                              Press 2) BACK TO HOME                           " << endl;
     cout << "==============================================================================" << endl;
-  char choice;
-  cin >> choice;
+    char choice1;
+    cin >> choice1;
 
-  switch (choice) {
-  case '1':
-    create();
-    info();
-    break;
-  case '2':
-    available_rooms();
-    info();
-    break;
-  case '3':
-    show();
-    break;
-  default:
-    cout << "------------------------------------------------------------------------------" << endl;
-    cout << "                     WARNING :: PLEASE ENTER A VALID CHARACTER                " << endl;
-    cout << "------------------------------------------------------------------------------" << endl;
-    info();
-    break;
+    switch (choice1)
+    {
+    case '1':
+      create();
+      info();
+      break;
+    case '2':
+      show();
+      break;
+    default:
+      cout << "------------------------------------------------------------------------------" << endl;
+      cout << "                     WARNING :: PLEASE ENTER A VALID CHARACTER                " << endl;
+      cout << "------------------------------------------------------------------------------" << endl;
+      info();
+      break;
+    }
   }
 
-}
 };
 
-int main() {
-  PAGE a;
-  a.show();
+int main()
+{
+  PAGE obj;
+  obj.show();
 }
