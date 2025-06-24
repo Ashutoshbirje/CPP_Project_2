@@ -9,7 +9,6 @@ The **Hotel Management System** is a software application designed to manage hot
 - **About**: Contains detailed information about the hotel.
 - **Customer**: Allows customers to access different services.
   - **Menu Card**: Displays available food items with prices. Users can select items, and the bill is generated accordingly.
-  - **Book Room**: Allows users to book a room based on availability, with a generated bill.
   - **Back to Home**: Navigates back to the home page.
 - **Help**: Provides assistance and guidelines on using the software.
 - **Settings**: Allows changes in software settings but requires a password for modifications.
