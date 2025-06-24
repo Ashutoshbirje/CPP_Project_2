@@ -2,3 +2,9 @@
 
       #f017      Vadapav         2           40
       #f017      Tea             2           20
+      #f018      Vadapav         2           40
+      #f018      MisalPav        1           40
+      #f019      Vadapav         1           20
+      #f019      Tea             1           10
+      #f014      Vadapav         1           20
+      #f014      MisalPav        1           40

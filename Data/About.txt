@@ -53,7 +53,6 @@ Services Available:
 About:
 
 1. Count of Staff: 60
-2. Total Number of Rooms: 45
 3. Open 24/7
 
 ==============================================================================

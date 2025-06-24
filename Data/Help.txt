@@ -32,10 +32,6 @@
     - View the available menu items and prices. 
     - Select items, and the bill will be generated automatically.
 
-   Book Room: 
-    - Choose a room from the available options and book it. 
-    - The system will generate a bill for the stay.
-
    Back to Home: 
     - Return to the home page.
 
@@ -52,7 +48,4 @@
     The Settings section allows changes to software configurations. 
     A password is required to modify settings to ensure security.
 
-------------------------------------------------------------------------------
-------------------------------------------------------------------------------
-
-
+==============================================================================

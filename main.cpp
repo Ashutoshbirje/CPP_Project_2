@@ -30,7 +30,7 @@ public:
       {
         throw runtime_error("Invalid Age: Only digits allowed (1-3 digits).");
       }
-      age = stoi(ageStr); // convert to int
+      age = stoi(ageStr);
 
       cout << "Enter your phone number: ";
       cin >> phone;
@@ -50,7 +50,6 @@ public:
       cin.ignore();
       getline(cin, address);
 
-      // Count existing records
       int cnt = 1;
       string s;
       ifstream r("Data/INFO.txt", ios_base::in);
