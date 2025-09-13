@@ -5,7 +5,8 @@ class password
 {
   int a = 0;
 
-public:
+ public:
+
   void Set_Pass_W(void)
   {
     int b;
@@ -26,7 +27,7 @@ public:
     {
       cin.clear();
       cin.ignore(INT_MAX, '\n');
-      
+
       cout << "------------------------------------------------------------------------------" << endl;
       cout << "                 " << e.what() << endl;
       cout << "------------------------------------------------------------------------------" << endl;
@@ -154,9 +155,9 @@ public:
       cout << endl;
     }
   }
-  
+
   void login()
-{
+  {
     cout << "==============================================================================" << endl;
     cout << "                                    Login page                                " << endl;
     cout << "                              Press 1) Change password                        " << endl;
@@ -170,22 +171,23 @@ public:
     switch (x)
     {
     case 1:
-        Set_Pass_W();
-        login();
-        break;
+      Set_Pass_W();
+      login();
+      break;
     case 3:
-        break;
-    case 2: {
-        menu m;
-        m.editMenu();
-        login();
-        break;
+      break;
+    case 2:
+    {
+      menu m;
+      m.editMenu();
+      login();
+      break;
     }
     default:
-        cout << "Invalid choice!\n";
-        login();
-        break;
+      cout << "Invalid choice!\n";
+      login();
+      break;
     }
-}
+  }
 
 };

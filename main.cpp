@@ -3,13 +3,16 @@
 #include "password.cpp"
 #include <regex>
 using namespace std;
+
 class Customer
 {
-private:
+ private:
+
   string name, phone, email, address;
   int age;
 
-public:
+ public:
+
   int ID = 0;
   void set()
   {
@@ -76,15 +79,19 @@ public:
       set();
     }
   }
+
 };
 
 class PAGE : public Customer
 {
+ private:
+
   char choice;
   password p;
   int flag = 1;
 
-public:
+ public:
+
   void show()
   {
     cout << "==============================================================================" << endl;

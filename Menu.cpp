@@ -4,6 +4,7 @@
 using namespace std;
 
 class menu {
+  
   vector<string> Item;
   vector<int> rate;
   vector<int> cost;
@@ -15,6 +16,7 @@ class menu {
   int Cust_id; 
 
 public:
+
   menu() {
     loadMenu();
   }
