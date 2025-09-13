@@ -1,7 +1,7 @@
 # Hotel Management System
 
 ## Overview
-The **Hotel Management System** is a software application designed to manage hotel operations efficiently. It includes features such as viewing hotel information, managing customers, booking rooms, and setting software preferences securely with a password.
+The **Hotel Management System** is a software application designed to manage hotel operations efficiently. It includes features such as viewing hotel information, managing customers, Automated Food Order and setting software preferences securely with a password.
 
 ## Features
 

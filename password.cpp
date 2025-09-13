@@ -154,48 +154,38 @@ public:
       cout << endl;
     }
   }
-
+  
   void login()
-  {
+{
     cout << "==============================================================================" << endl;
     cout << "                                    Login page                                " << endl;
     cout << "                              Press 1) Change password                        " << endl;
-    cout << "                              Press 2) BACK TO HOME                           " << endl;
+    cout << "                              Press 2) Edit Menu-Card                         " << endl;
+    cout << "                              Press 3) BACK TO HOME                           " << endl;
     cout << "==============================================================================" << endl;
 
     int x;
-    try
-    {
-      cin >> x;
-      if (cin.fail())
-      {
-        throw runtime_error("Invalid input: Please enter only integers.");
-      }
-    }
-    catch (exception &e)
-    {
-      cin.clear();
-      cin.ignore(INT_MAX, '\n');
-      cout << "------------------------------------------------------------------------------" << endl;
-      cout << "                 " << e.what() << endl;
-      cout << "------------------------------------------------------------------------------" << endl;
-      return;
-    }
+    cin >> x;
 
     switch (x)
     {
     case 1:
-      Set_Pass_W();
-      login();
-      break;
-    case 2:
-      break;
-    default:
-      cout << "------------------------------------------------------------------------------" << endl;
-      cout << "                     WARNING :: PLEASE ENTER A VALID CHARACTER                " << endl;
-      cout << "------------------------------------------------------------------------------" << endl;
-      login();
-      break;
+        Set_Pass_W();
+        login();
+        break;
+    case 3:
+        break;
+    case 2: {
+        menu m;
+        m.editMenu();
+        login();
+        break;
     }
-  }
+    default:
+        cout << "Invalid choice!\n";
+        login();
+        break;
+    }
+}
+
 };

@@ -2,9 +2,10 @@
 #include <fstream>
 #include <iomanip>
 using namespace std;
+
 class menu {
-  int rate[7] = {20, 40, 50, 30, 25, 10, 20};
   vector<string> Item;
+  vector<int> rate;
   vector<int> cost;
   vector<int> quantity;
   int count = 0;
@@ -12,58 +13,79 @@ class menu {
   int sum = 0; // total bill
   int a;       // quantity
   int Cust_id; 
+
 public:
-  menu(){
-  vector<string> Item={""};
-  vector<int> cost={0};
-  vector<int> quantity={0};
+  menu() {
+    loadMenu();
   }
+
+  // Load menu items from file
+  void loadMenu() {
+    Item.clear();
+    rate.clear();
+    ifstream in("Data/Menu.txt");
+    string name;
+    int r;
+    while (in >> ws && getline(in, name, ' ')) {
+      in >> r;
+      Item.push_back(name);
+      rate.push_back(r);
+    }
+    in.close();
+  }
+
+  // Save menu items to file
+  void saveMenu() {
+    ofstream out("Data/Menu.txt", ios::trunc);
+    for (int i = 0; i < Item.size(); i++) {
+      out << Item[i] << " " << rate[i] << "\n";
+    }
+    out.close();
+  }
+
   void Card(int id) {
-    Cust_id=id;
+    Cust_id = id;
     cout << endl;
     cout << "==============================================================================" << endl;
-    cout << "                              Welcome to Hotel Taj                            " << endl;
-    cout << "                            Item       Code     Value                         " << endl;
-    cout << "                         # Vadapav     (1)    20.00 Rs                        " << endl;
-    cout << "                         # MisalPav    (2)    40.00 Rs                        " << endl;
-    cout << "                         # Vadasamber  (3)    50.00 Rs                        " << endl;
-    cout << "                         # kanda bhji  (4)    30.00 Rs                        " << endl;
-    cout << "                         # Mirchi bhji (5)    25.00 Rs                        " << endl;
-    cout << "                         # Tea         (6)    10.00 Rs                        " << endl;
-    cout << "                         # Coffee      (7)    20.00 Rs                        " << endl;
-    cout << "                         # ORDER       (8)    ########                        " << endl;
-    cout << "    (Enter respective code number to chosse menu and then press ORDER code)   " << endl;
+    cout << "                                    Hotel Taj                                 " << endl;
+    cout << "                          123 Oceanfront Avenue,M.G.Road,                     " << endl;
+    cout << "                          Pune-411001 Maharashtra, India                      " << endl;
+    cout << "                             GSTIN :- 27ALDPM7712K1ZV                         " << endl;
+    cout << "                        ----------------------------------                    " << endl;
+    cout << "                         Item              Code  cost(Rs.)                    " << endl;
+    cout << "                        ----------------------------------                    " << endl;
+
+    for (int i = 0; i < Item.size(); i++) {
+      cout << "                         # " << setw(10) << left << Item[i] 
+           << "    (" << i+1 << ")    " << rate[i] << ".00 Rs" << endl;
+    }
+    if(id!=-1){
+    cout << "                         # ORDER      (0)    ########  " << endl;
+    cout << "    (Enter respective code number to choose menu and then press ORDER code)   " << endl;
+    } else {
+    cout << "                         # New Item      (0)    New-Rate  " << endl;
+    cout << "                         # Exit         (-1)    XXXXXXXX  " << endl;
+    cout << "   (Enter code number to edit menu and then press New Item code to add New)   " << endl;
+    } 
     cout << "==============================================================================" << endl;
     cout << endl;
-    inti();
+    if(id!=-1){
+      inti();
+    }
   }
+
   void bill(void) {
     cout << "Enter Quantity   :";
     cin >> a;
     cout << endl;
     int sum1 = a * rate[C - 1];
-    sum = sum + sum1;
+    sum += sum1;
     quantity.push_back(a);
     cost.push_back(sum1);
-    string s;
-    if (C == 1) {
-      s = "Vadapav    ";
-    } else if (C == 2) {
-      s = "MisalPav   ";
-    } else if (C == 3) {
-      s = "Vadasamber ";
-    } else if (C == 4) {
-      s = "kanda bhji ";
-    } else if (C == 5) {
-      s = "Mirchi bhji";
-    } else if (C == 6) {
-      s = "Tea        ";
-    } else if (C == 7) {
-      s = "Coffee     ";
-    }
-    Item.push_back(s);
+    Item.push_back(Item[C - 1]);
     inti();
   }
+
   void bill_display(void) {
     cout << "==============================================================================" << endl;
     cout << "                                    Hotel Taj                                 " << endl;
@@ -71,18 +93,21 @@ public:
     cout << "                          Pune-411001 Maharashtra, India                      " << endl;
     cout << "                             GSTIN :- 27ALDPM7712K1ZV                         " << endl;
     cout << "                        ----------------------------------                    " << endl;
-    cout << "                         Name:                                                " << endl;
-    cout << "                        ----------------------------------                    " << endl;
     cout << "                         Item              Qty.  cost(Rs.)                    " << endl;
     cout << "                        ----------------------------------                    " << endl;
-    ofstream write;
-    write.open("Data/BILL.txt", ios_base::app);
+
+    ofstream write("Data/BILL.txt", ios_base::app);
     for (int i = 0; i < count; i++) {
-    cout << "                         " << Item[i] << "        " << quantity[i] << "     "<< cost[i] << endl;
-      write <<setw(10)<< "#f01"<<Cust_id<<"      "<<setw(11)<<Item[i] << "    "<<setw(2) << quantity[i] << "        "
-        <<setw(5)<< cost[i] << endl;
+      cout << "                         " << Item[i] << "        " << quantity[i] 
+           << "     " << cost[i] << endl;
+
+      write << setw(10) << "#f01" << Cust_id << "      " 
+            << setw(11) << Item[i] << "    " 
+            << setw(2) << quantity[i] << "        "
+            << setw(5) << cost[i] << endl;
     }
     write.close();
+
     cout << "                        ----------------------------------                    " << endl;
     cout << "                         TOTAL BILL               :" << sum << " Rs.          " << endl;
     cout << "                        ----------------------------------                    " << endl;
@@ -90,13 +115,25 @@ public:
     cout << "==============================================================================" << endl;
     cout << endl;
   }
-  void inti(void) {
+
+  void inti() {
     cout << "Enter number     :";
     cin >> C;
-    if (C >= 1 && C < 8) {
+
+    if (cin.fail()) {
+        cin.clear(); 
+        cin.ignore(INT_MAX, '\n'); 
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "                   ERROR :: Invalid input, Please enter a number              " << endl;
+        cout << "------------------------------------------------------------------------------" << endl;
+        inti();
+        return;
+    }
+
+    if (C >= 1 && C <= Item.size()) {
       count++;
       bill();
-    } else if (C == 8) {
+    } else if (C == 0) {
       bill_display();
     } else {
       cout << endl;
@@ -107,4 +144,72 @@ public:
       cout << endl;
     }
   }
+
+  // Admin option to edit menu
+  void editMenu() {
+    Card(-1);
+    int choice;
+    cin >> choice;
+    cout << "------------------------------------------------------------------------------" << endl;
+    if (cin.fail()) {
+        cin.clear(); 
+        cin.ignore(INT_MAX, '\n'); 
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "                   ERROR :: Invalid input, Please enter a number              " << endl;
+        cout << "------------------------------------------------------------------------------" << endl;
+        editMenu();
+        return;
+    }
+
+    if (choice == 0) {
+        string newName; int newRate;
+        cout << "Enter new item name: ";
+        cin >> ws; getline(cin, newName);
+        cout << "Enter rate: ";
+        while (!(cin >> newRate)) {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "------------------------------------------------------------------------------" << endl;
+            cout << "                   ERROR :: Invalid input! Enter numeric rate:                " << endl;
+            cout << "------------------------------------------------------------------------------" << endl;
+        }
+        Item.push_back(newName);
+        rate.push_back(newRate);
+        saveMenu(); 
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "Menu updated successfully!\n";
+
+    } else if (choice == -1) {
+        return;
+
+    } else if (choice > 0 && choice <= Item.size()) {
+        cout << "Editing " << Item[choice-1] << "\n";
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "Enter new name (or . to keep same): ";
+        string newName; cin >> ws; getline(cin, newName);
+        if (newName != ".") Item[choice-1] = newName;
+
+        cout << "Enter new rate: ";
+        int newRate;
+        while (!(cin >> newRate)) {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "------------------------------------------------------------------------------" << endl;
+            cout << "                   ERROR :: Invalid input! Enter numeric rate:                " << endl;
+            cout << "------------------------------------------------------------------------------" << endl;
+        }
+        rate[choice-1] = newRate;
+
+        saveMenu();  
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "Menu updated successfully!\n";
+
+    } else {
+        cout << "------------------------------------------------------------------------------" << endl;
+        cout << "                     WARNING :: CODE NOT FOUND                                " << endl;
+        cout << "------------------------------------------------------------------------------" << endl;
+        editMenu();
+    }
+}
+
 };

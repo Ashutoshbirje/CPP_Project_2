@@ -8,3 +8,18 @@
       #f019      Tea             1           10
       #f014      Vadapav         1           20
       #f014      MisalPav        1           40
+      #f018          Vadapav     1           20
+      #f018          Vadapav     1           20
+      #f018         MisalPav     1           40
+      #f018       Vadasamber     1           50
+      #f019         Vada-Pav     1           12
+      #f019         Vada-Pav     2           80
+      #f019         Vada-Pav     1           30
+      #f0110         Vada-Pav     2           20
+      #f0110         MisalPav     1           40
+      #f0111         Vada-Pav     2           20
+      #f0111         MisalPav     1           40
+      #f0112               -1     1            1
+      #f0112         MisalPav     1            5
+      #f0113               -1     1           40
+      #f0114               -1     1           50
